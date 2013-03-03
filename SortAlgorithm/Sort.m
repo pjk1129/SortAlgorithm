@@ -242,9 +242,7 @@
             //取到当前这个数的对应位置上的一位数
             NSNumber  *number = [data objectAtIndex:j];
             NSInteger  x = [number integerValue]% (int)pow(10, i+1)/(int)pow(10, i);
-            NSMutableArray  *returnQueue = [queue objectAtIndex:x];
-            [returnQueue addObject:number];
-            [queue replaceObjectAtIndex:x withObject:returnQueue];
+            [[queue objectAtIndex:x] addObject:number];
         }
         
         NSInteger count = 0;
