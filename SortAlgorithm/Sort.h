@@ -6,9 +6,16 @@
 //  Copyright (c) 2013年 njut. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+/*
+ *采用objective-c实现常见的排序算法：冒泡算法，选择排序，插入排序，快速排序等经典算法。
+ *其中选择排序，插入排序，快速排序实现来自http://www.cnblogs.com/halzhang/archive/2011/10/07/2200631.html
+ *在此向原作者表示感谢！
+ *
+ *欢迎更好，更高效的实现方法，欢迎交流
+ *
+ */
 
-//本文采用objective-c实现常见的排序算法：选择排序，插入排序，快速排序。
+#import <Foundation/Foundation.h>
 
 @interface Sort : NSObject
 
