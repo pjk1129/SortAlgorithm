@@ -1,5 +1,5 @@
 //
-//  SortManager.m
+//  Sort.m
 //  Test
 //
 //  Created by JK.Peng on 13-2-28.
@@ -26,7 +26,6 @@
 -(void)dealloc{
     [super dealloc];
 }
-
 
 - (id)init
 {
@@ -255,9 +254,59 @@
             }
         }
         
+        NSLog(@"第 %d 趟排序结果为：%@",time,data);
+        
     }
 
     [queue release];
+    return data;
+}
+
+- (NSArray *)countSortWithArray:(NSArray *)aData
+{
+    NSMutableArray *data = [[[NSMutableArray alloc] initWithArray:aData] autorelease];
+
+    //最大元素
+    NSInteger maxValue = [[data objectAtIndex:0] integerValue];
+    for(NSInteger i=1;i<[data count];i++){
+        if([[data objectAtIndex:i] integerValue]>maxValue){
+            maxValue = [[data objectAtIndex:i] integerValue];
+        }
+    }
+    
+    //数组count（用c代表）：纪录A中某个数据在表B中的位置，初始值为0
+    NSMutableArray *c = [NSMutableArray arrayWithCapacity:0];
+    for (NSInteger i=0; i<maxValue+1; i++) {
+        [c addObject:[NSNumber numberWithInteger:i]];
+    }
+    
+    //求出重复的数字出现多少次
+    for (NSInteger j=0; j<[aData count]; j++) {
+        NSInteger index = [[aData objectAtIndex:j] integerValue];
+        NSNumber *value = [c objectAtIndex:index];
+        NSInteger newValue = [value integerValue]+1;
+        [c replaceObjectAtIndex:index withObject:[NSNumber numberWithInteger:newValue]];
+    }
+    
+    //求出不比数字j大的元素的个数，包括相等的
+    for (NSInteger i=1; i<=maxValue; i++) {
+        NSInteger  curValue = [[c objectAtIndex:i] integerValue];
+        NSInteger  preValue = [[c objectAtIndex:i-1] integerValue];
+        NSNumber  *newValue = [NSNumber numberWithInteger:curValue+preValue];
+        [c replaceObjectAtIndex:i withObject:newValue];
+    }
+    
+
+    for (NSInteger i=[aData count]-1; i>=0; i--) {
+        NSInteger index = [[c objectAtIndex:i] integerValue]-1;
+        [data replaceObjectAtIndex:index withObject:[aData objectAtIndex:i]];
+        
+        NSInteger changedIndex = [[aData objectAtIndex:i] integerValue];
+        [c replaceObjectAtIndex:changedIndex withObject:[NSNumber numberWithInteger:changedIndex-1]];
+        
+    }
+
+    
     return data;
 }
 

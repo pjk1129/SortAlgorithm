@@ -131,8 +131,10 @@
 //计数排序
 - (IBAction)countingSort:(id)sender
 {
-    self.resultTextView.text = @"";
-}
+    Sort *sort = [[[Sort alloc] init] autorelease];
+    NSArray  *result = [sort countSortWithArray:self.dataArray];
+    NSLog(@"计数排序后的结果：%@",result);
+    self.resultTextView.text = [result description];}
 
 //小根堆排序
 - (IBAction)heapSort:(id)sender

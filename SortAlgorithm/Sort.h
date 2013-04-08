@@ -1,5 +1,5 @@
 //
-//  SortManager.h
+//  Sort.h
 //  Test
 //
 //  Created by JK.Peng on 13-2-28.
@@ -66,5 +66,11 @@
  思想：将所有待比较数值（正整数）统一为同样的数位长度，数位较短的数前面补零。然后，从最低位开始，依次进行一次排序。这样从最低位排序一直到最高位排序完成以后,数列就变成一个有序序列。
  */
 - (NSArray *)radixSortWithArray:(NSArray *)aData;
+
+/*
+ 计数排序
+ 计数排序在百度百科中有详细的介绍http://baike.baidu.com/view/1209480.htm
+ */
+- (NSArray *)countSortWithArray:(NSArray *)aData;
 
 @end
